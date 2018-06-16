@@ -1,0 +1,33 @@
+
+This technique is great and used very often to help clean up dealing with edge conditions so that you don’t have to treat the head of your list as a special case. This technique only involves creating one extra pointer, the dummy head, that will point to your final answer or list that you will return. This technique is much easier to demonstrate with an example.
+
+Delete Node
+Say you are asked to delete a node in a linked list given the value of the node you want to delete. Furthermore you are told that you can assume the values are unique.
+
+For example:
+
+Input: 1->2->4, 2
+Output: 1->4
+class Node(object):
+    def __init__(self, v):
+        self.val = v
+        self.next = None
+    
+def delete_node(head, val):
+    d = Node("dummy") # 1
+    d.next = head
+    p = d
+    c = head
+    while c:
+        if c.val == val:
+            p.next = c.next # 2
+            return d.next   # 3
+        p = c
+        c = c.next
+    return d.next # 4 
+The creation of the dummy head, in this case it is initialized to point to the original list.
+Because we created the dummy head we don’t have to treat deleting the head of the original list any different from other elements in the list.
+The dummy head points to the answer list so we simply return the next node as the head of the answer.
+If we don’t happen to find the item setting the dummy head to the original list makes it still point to the correct answer.
+Summary
+Treating the dummy head with the invariant that it is always pointing to the current correct answer makes dealing with edge cases in linked lists a lot easier and can be found in a number of elegant solutions.

@@ -24,9 +24,13 @@ class LinkedList:
             print(current.val)
             current = current.next
 
+    # Delete the node at the specific key (Dummy head technique, Two pointers)
     def deleteNode(self, key):
+        # Check edge case
         if self.head == None:
             return self.head
+
+        # Algorithmns
         prev = None
         current = self.head
         while (current != None):

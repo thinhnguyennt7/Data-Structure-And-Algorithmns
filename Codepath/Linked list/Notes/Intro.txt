@@ -1,0 +1,81 @@
+A call stack is simply a trace from where the program is currently at all the way back to the start of that process or thread. This simple trail home is essential for the computer to know what to do when the current function it is working on exits. In this case, the computer knows it can just go to the first item on that stack remove it from the list, making the second item now the first thing on the stack, and then doing the rest of the work that the previous first item was pointing to. This simple sequence of one item pointing to another item pointing to another item, and so on, to form a list of items is known as a Linked List.
+
+The most common variants of linked lists are:
+
+Singly Linked List
+Doubly Linked List
+Circular Linked List
+All variants refer to how the items (nodes) of the list point to each other. The Singly Linked List will only have one pointer that has a reference to the next node in the list, whereas, the Doubly Linked List would have a pointer to the next item as well as the previous item. In almost ALL interviewing scenarios the linked list will be the Singly Linked List and the rest of the documentation will refer to linked list as that and only the other structures if specifically mentioned.
+
+A minimal, but quite common python definition of a linked list node would be:
+
+class ListNode: 
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+Where,
+
+head = ListNode(1)
+head.next = ListNode(2)
+, would create the list 1 -> 2 and 1 is at the head (front) of the list.
+
+Pros and Cons
+If we think about the call stack example, we were only really operating on one side (the head) of the list, thus why it is referred to as a stack. We were grabbing the next function to go back to based on the head and we would place the function we just left as we make a call onto the head.
+
+Linked Lists really shine when we confine the our operations to one end of the data structure and also are dealing with arbitrary, yet small sizes.
+
+The linked list can then offer a very simple implementation as well as how algorithms will use it as well as O(1) time complexity as you work with the head of the list.
+
+Lists do not do well when you want to support random access. The only way to get to some item near the back of the list is to take that long walk and this results in O(N) time performance.
+
+We also don’t like to store large amounts of information in linked lists because for every value you store you pay a storage penalty of the Node that contains that value.
+
+Time and Space Complexity
+Best cases:
+Accessing / Search : O(1)
+Inserting at head: O(1)
+Deleting at head: O(1)
+
+Worst cases:
+Accessing / Searching : O(N)
+Inserting: O(N)
+Deleting: O(N)
+
+Best Case occurs when the node is at the head of the list and Worst Case is when the node is at the end of the list.
+
+Glossary
+Node a position in a list that contains the value of whatever is stored at the position as well as at least one reference to another node.
+Head node at the beginning of the list.
+Tail node at the end of the list.
+Sentinel a dummy node, typically placed at the head or end of the list to help make operations simpler (e.g., delete) or to indicate the termination of the list.
+Common Operations
+Insert
+def insert(self, val):
+    n = ListNode(val)
+    n.next = self
+    return n
+Delete
+def delete(self, val):
+    s = ListNode("sentinel")
+    s.next = self
+    p = s
+    c = self
+    while c:
+        if c.val == val:
+            p.next = c.next
+            return s.next
+        p = c
+        c = c.next
+    return s.next         
+Length of List
+def __len__(self):
+    c = self
+    l = 0
+    while c:
+        l += 1
+        c = c.next
+    return l
+Patterns List
+Dummy Head
+Multiple Pass
+Two Pointer

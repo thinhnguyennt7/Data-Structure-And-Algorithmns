@@ -1,0 +1,22 @@
+1) Person A will begin the first round of interviews as the interviewer
+
+Interviewer introduces the problem, interviewees clarify the question
+Interviewees come up with example input/ output and write down pseudocode
+Actual coding
+End with a quick time/ space complexity analysis even if the coding is not complete.
+
+2) After the interview is over, provide feedback for how the session went.
+
+Example feedback for the interviewees:
+
+What did the interviewee do well?
+Did the interviewees come up with an example input/ output before planning out the approach?
+Did the interviewees plan sufficiently before coding?
+Were the interviewees communicative throughout?
+Example feedback the interviewer:
+
+What did the interviewer do well?
+Did the interviewer clearly state the question?
+Did the interviewer help along the way?
+
+3) Repeat steps 1 & 2 with person B as the interviewer.

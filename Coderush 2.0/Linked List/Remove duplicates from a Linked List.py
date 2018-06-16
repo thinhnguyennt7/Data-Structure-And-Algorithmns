@@ -32,24 +32,24 @@ class LinkedList:
             print(current.val)
             current = current.next
 
-    def removeDuplicates(self):
-        if self.head == None:
-            return self.head
+    # def removeDuplicates(self):
+    #     if self.head == None:
+    #         return self.head
 
-        dup_set = set()
-        dup_set.add(self.head.val)
-        curr = self.head
+    #     dup_set = set()
+    #     dup_set.add(self.head.val)
+    #     curr = self.head
 
-        while curr.next != None:
+    #     while curr.next != None:
 
-            if curr.next.val in dup_set:
-                curr.next = curr.next.next
+    #         if curr.next.val in dup_set:
+    #             curr.next = curr.next.next
 
-            else:
-                dup_set.add(curr.next.val)
-                curr = curr.next
+    #         else:
+    #             dup_set.add(curr.next.val)
+    #             curr = curr.next
 
-        return self.head.val
+    #     return self.head.val
 
     # Time: O(n)
     # Memory: O(n)
@@ -64,5 +64,5 @@ l.insert(21)
 l.printList()
 print("########")
 print("After remove duplicated:")
-l.removeDuplicates()
+# l.removeDuplicates()
 l.printList()
