@@ -25,41 +25,49 @@ Follow up:
 Try to solve it in O(n log k) time and O(n) extra space.
 
 '''
-import collections
 import heapq
-import functools
 
-@functools.total_ordering
-class Element:
-	def __init__(self, count, word):
-		self.count = count
-		self.word = word
+def top_k_frequent(words, k):
+	word_to_count = calculate_count(words) # {word: count}
+	#[(count, word), (count2, word2), .....] Tuple
+	word_count_pairs = []
+	for word, count in word_to_count.items():
+		word_count_pairs.append((-count, word)) # The reason to put the negative here
+		# because in the default of heapq, it do the min heap instead the maxheap
 
-	def __lt__(self, other):
-		if self.count == other.count:
-			return self.word > other.word
-		return self.count < other.count
+	heapq.heapify(word_count_pairs) # transform word_count_pair into heap
+	result = []
+	for i in range(k):
+		result.append(heapq.heappop(word_count_pairs)[1]) # heappop the smallest item off the heap since we are in min heap
+														# The [1] is because we only want the word not the number
+	return result
 
-	def __eq__(self, other):
-		return self.count == other.count and self.word == other.word
+# Helper method that calculate the number of time words appear in the list
+def calculate_count(words):
+	diction = {}
+	for word in words:
+		if word in diction:
+			diction[word] += 1
+		else:
+			diction[word] = 1
+	return diction
 
-class Solution(object):
-	def topKFrequent(self, words, k):
-		"""
-		:type words: List[str]
-		:type k: int
-		:rtype: List[str]
-		"""
-		counts = collections.Counter(words) 
 
-		freqs = []
-		heapq.heapify(freqs)
-		for word, count in counts.items():
-			heapq.heappush(freqs, (Element(count, word), word))
-			if len(freqs) > k:
-				heapq.heappop(freqs)
+input = ["i", "love", "leetcode", "i", "love", "coding"]
+k = 2
+print("Solution:", top_k_frequent(input, k))
 
-		res = []
-		for _ in range(k):
-			res.append(heapq.heappop(freqs)[1])
-		return res[::-1]
+# Time: Time Complexity: O(N log k), where N is the length of words.
+# We count the frequency of each word in O(N) time, then we add N words to
+# the heap, each in O(logk) time. Finally, we pop from the heap up
+# to k times. As k ≤ N, this is O(Nlogk) in total.
+
+# In Python, we improve this to O(N+klogN): our heapq.heapify
+# operation and counting operations are O(N), and each of k heapq.heappop
+# operations are O(logN).
+
+print("#######")
+print("Time: O(N + K logN")
+
+print("Space: O(N)")
+

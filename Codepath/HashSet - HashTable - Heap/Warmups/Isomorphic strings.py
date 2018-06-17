@@ -1,6 +1,4 @@
 '''
-
-
 Given two strings s and t, determine if they are isomorphic.
 
 Two strings are isomorphic if the characters in s can be replaced to get t.
@@ -26,24 +24,26 @@ You may assume both s and t have the same length.
 
 '''
 class Solution:
-    def isIsomorphic(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: bool
-        """
-        if len(s) != len(t):
-            return False
-        start = 0
-        end = len(s) - 1
-        d = dict()
-        while start <= end:
-            if s[start] in d:
-                if d[s[start]] != t[start]:
-                    return False
-            else:
-                if t[start] in d.values():
-                    return False
-                d[s[start]] = t[start]
-            start += 1
-        return True
+	def isIsomorphic(self, s, t):
+		"""
+		:type s: str
+		:type t: str
+		:rtype: bool
+		"""
+		if len(s) < len(t):
+			return False
+
+		begin = 0
+		end = len(t) - 1
+		dictionary = dict()
+
+		while begin <= end:
+			if s[begin] in dictionary:
+				if dictionary[s[begin]] != t[begin]:
+					return False
+			else:
+				if t[begin] in dictionary.values():
+					return False
+				dictionary[s[begin]] = t[begin]
+
+		return True

@@ -30,12 +30,12 @@ class Solution:
         """
         jewels = {}
         count = 0
-        
+
         for c in J:
             jewels[c] = True
-            
+
         for c in S:
             if c in jewels:
                 count += 1
-        
+
         return count

@@ -34,35 +34,50 @@ All possible pairs are returned from the sequence:
 [1,3],[2,3]
 
 '''
+
+ # Cartesian product idea in discret math class
 import heapq
 
-class Solution(object):
-	def kSmallestPairs(self, nums1, nums2, k):
-		"""
-		:type nums1: List[int]
-		:type nums2: List[int]
-		:type k: int
-		:rtype: List[List[int]]
-		"""
-		if k == 0 or len(nums1) == 0 or len(nums2) == 0:
-			return []
-		ret, heap = [], []
-		check = set((0, 0))
-		heapq.heappush(heap, (nums1[0]+nums2[0], (0, 0)))
+def kSmallestPairs(nums1, nums2, k):
+	"""
+	:type nums1: List[int]
+	:type nums2: List[int]
+	:type k: int
+	:rtype: List[List[int]]
+	"""
 
-		count = 0
+	if k == 0 or len(nums1) == 0 or len(nums2) == 0:
+		return []
+	ret, heap = [], []
+	check = set((0, 0))
+	heapq.heappush(heap, (nums1[0]+nums2[0], (0, 0))) # two inputs already sorted. Therefore the first two will the
+														# the minmun value
+	print("heap: ", heap)
 
-		while count < k and heap:
-			(val, (x, y)) = heapq.heappop(heap)
-			ret.append([nums1[x], nums2[y]])
-			count += 1
+	count = 0
 
-			if (x+1, y) not in check and x+1 < len(nums1):
-				check.add((x+1, y))
-				heapq.heappush(heap, (nums1[x+1]+nums2[y], (x+1, y)))
+	while count < k and heap:
+		(val, (x, y)) = heapq.heappop(heap)
 
-			if (x, y+1) not in check and y+1 < len(nums2):
-				check.add((x, y+1))
-				heapq.heappush(heap, (nums1[x]+nums2[y+1], (x, y+1)))
+		print("val: ", val)
+		print("value now: ", (x,y))
 
-		return ret
+		ret.append([nums1[x], nums2[y]])
+		print("ret: ", ret)
+		count += 1
+
+		if (x+1, y) not in check and x+1 < len(nums1):
+			check.add((x+1, y))
+			heapq.heappush(heap, (nums1[x+1]+nums2[y], (x+1, y)))
+
+		if (x, y+1) not in check and y+1 < len(nums2):
+			check.add((x, y+1))
+			heapq.heappush(heap, (nums1[x]+nums2[y+1], (x, y+1)))
+
+	return ret
+
+# Driver test
+input1 = [1,7,11]
+input2 = [2,4,6]
+k = 3
+print("solution: ", kSmallestPairs(input1, input2, k))
