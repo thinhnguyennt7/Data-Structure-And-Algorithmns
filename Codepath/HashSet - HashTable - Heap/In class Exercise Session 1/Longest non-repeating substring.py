@@ -12,6 +12,7 @@ the longest non-repeating substring is
 "a" and thus the output would be 1.
 '''
 
+# Sliding windown algorithmn
 def longest_nonRepating_substring(str):
 	# Edge case
 	if len(str) == 0:
@@ -21,7 +22,7 @@ def longest_nonRepating_substring(str):
 	tempString = ""
 	output = ""
 
-	for i in str:
+	for i in str:l
 		if i not in tempString:
 			tempString += i
 			if len(tempString) > maxlength:
