@@ -11,7 +11,31 @@ If time permits, implement the delete_min() method.
 
 '''
 
-class MinHeap:
+# class MinHeap:
+# 	def __init__(self):
+# 		self.heap_list = []
+
+# 	def insert(self, new_element):
+# 		self.heap_list.append(new_element)
+# 		self.bubble_up(len(self.heap_list) - 1)
+
+# 	def bubble_up(self, curr_index):
+# 	  parent_index = (curr_index - 1) // 2
+# 	  while parent_index >= 0:
+# 		curr_element, parent_element = self.heap_list[curr_index], self.heap_list[parent_index]
+# 		if curr_element < parent_element:
+# 			self.heap_list[parent_index] = curr_element
+# 			self.heap_list[curr_index] = parent_element
+# 			curr_index = parent_index
+# 			parent_index = (parent_index - 1) // 2
+# 		else:
+# 			break
+# 			
+# 			
+# 			
+
+
+class minHeap:
 	def __init__(self):
 		self.heap_list = []
 
@@ -20,13 +44,11 @@ class MinHeap:
 		self.bubble_up(len(self.heap_list) - 1)
 
 	def bubble_up(self, curr_index):
-	  parent_index = (curr_index - 1) // 2
-	  while parent_index >= 0:
-		curr_element, parent_element = self.heap_list[curr_index], self.heap_list[parent_index]
-		if curr_element < parent_element:
-			self.heap_list[parent_index] = curr_element
-			self.heap_list[curr_index] = parent_element
-			curr_index = parent_index
-			parent_index = (parent_index - 1) // 2
-		else:
-			break
+		parent_index = (curr_index - 1) // 2
+		while parent_index >= 0:
+			curr_element, parent_element = self.heap_list[curr_index], self.heap_list[parent_index]
+			if curr_element < parent_element:
+				self.heap_list[parent_index]
+
+
+

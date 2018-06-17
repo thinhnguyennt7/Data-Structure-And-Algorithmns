@@ -10,26 +10,44 @@ get_min() -- Retrieve the minimum element in the stack.
 
 '''
 
-class MinStack:
-	def __init__(self):
-		self.stack_list = []
+# class MinStack:
+# 	def __init__(self):
+# 		self.stack_list = []
 
-	def push(self, x):
-		curr_min = self.stack_list[-1][1] if self.stack_list else x
-		if curr_min > x:
-			curr_min = x
-		self.stack_list.append((x, curr_min))
+# 	def push(self, x):
+# 		curr_min = self.stack_list[-1][1] if self.stack_list else x
+# 		if curr_min > x:
+# 			curr_min = x
+# 		self.stack_list.append((x, curr_min))
+
+# 	def pop(self):
+# 		if self.stack_list:
+# 			self.stack_list.pop()
+
+# 	def top(self):
+# 		if self.stack_list:
+# 			return self.stack_list[-1][0]
+# 		return None
+
+# 	def get_min(self):
+# 		if self.stack_list:
+# 			return self.stack_list[-1][1]
+# 		return None
+
+
+class MinStack:
+	def __intit__(self):
+		self.stack = []
+
+	def push(self, element):
 
 	def pop(self):
-		if self.stack_list:
-			self.stack_list.pop()
+		getLen = len(self.stack)-1
+		self.stack = self.stack[::getLen]
+		return self.stack[getLen]
 
 	def top(self):
-		if self.stack_list:
-			return self.stack_list[-1][0]
-		return None
+		getLen = len(self.stack)-1
+		return self.stack[getLen]
 
 	def get_min(self):
-		if self.stack_list:
-			return self.stack_list[-1][1]
-		return None
