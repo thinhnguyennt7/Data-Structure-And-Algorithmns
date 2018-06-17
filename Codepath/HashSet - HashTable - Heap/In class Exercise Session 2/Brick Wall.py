@@ -50,18 +50,22 @@ Bricks in rows align with each other when the total
     >>> least_bricks([[1,2,2,1], [3,1,2], [1,3,2], [2,4], [3,1,2], [1,3,1,1]])
     2
 '''
-class Solution(object):
-    def leastBricks(self, wall):
-        """
-        :type wall: List[List[int]]
-        :rtype: int
-        """
-            counts = defaultdict(int)
-		    for row in wall:
-		        total = 0
-		        for brick in row[:-1]:
-		            total += brick
-		            counts[total] += 1
-		    if len(counts) == 0:
-		        return len(wall)
-		    return len(wall) - max(counts.values())
+def leastBricks(wall):
+    """
+    :type wall: List[List[int]]
+    :rtype: int
+    """
+    counts = defaultdict(int)
+        for row in wall:
+            total = 0
+            for brick in row[:-1]:
+                total += brick
+                counts[total] += 1
+        if len(counts) == 0:
+            return len(wall)
+        return len(wall) - max(counts.values())
+
+# Driver Test
+if __name__ == "__main__":
+    input = [[1,2,2,1], [3,1,2], [1,3,2], [2,4], [3,1,2], [1,3,1,1]]
+    print("Solution: ", leastBricks(input))
