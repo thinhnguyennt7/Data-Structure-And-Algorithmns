@@ -33,7 +33,39 @@ def getSkyline(buildings):
     :type buildings: List[List[int]]
     :rtype: List[List[int]]
     """
-    return buildings
+    # Initlize the value
+    output, totalScores = [], []
+    dictionary = {}
+    dictionary[0] = 1
+    intial = 0
+
+    # Loop through the values
+    for val in buildings:
+        totalScores.append([val[0], -val[2]])
+        totalScores.append([val[1], val[2]])
+    # Sort all the values in the array
+    totalScores.sort()
+
+    # Loop through the valus in the scores
+    for val in totalScores:
+        x_Coor = val[0]
+        y_Coor = val[1]
+        if y_Coor < 0:
+            akey = -y_Coor
+            if akey in dictionary:
+                dictionary[akey] = dictionary[akey] + 1
+            else:
+                dictionary[akey] = 1
+            # dictionary[key] = 1 + dictionary[key] if key in dictionary else 1
+        else:
+            dictionary[y_Coor] -= 1
+            if dictionary[y_Coor] == 0:
+                del dictionary[y_Coor]
+        currentVal = max(dictionary)
+        if currentVal != intial:
+            output.append([x_Coor, currentVal])
+        intial = currentVal
+    return output
 
 if __name__ == "__main__":
 	input = [[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]
