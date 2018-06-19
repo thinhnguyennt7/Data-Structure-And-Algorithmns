@@ -40,12 +40,21 @@ Explanation:
 Note that 'A' and 'a' are treated as two different characters.
 '''
 
-def frequencySort(s):
-    """
-    :type s: str
-    :rtype: str
-    """
+import collections
+import heapq
 
+def frequencySort(s):
+    res=""
+    dic=collections.defaultdict(int)
+    for i in s:
+            dic[i]+=1
+
+    heap=[(dic[i],i) for i in dic]
+    heapq.heapify(heap)
+    while heap:
+            i,j=heapq.heappop(heap)
+            res=j*i+res
+    return res
 
 # Driver test
 if __name__ == "__main__":
