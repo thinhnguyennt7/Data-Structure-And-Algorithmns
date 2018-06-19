@@ -7,8 +7,21 @@ For example, given the list temperatures = [73, 74, 75, 71, 69, 72, 76, 73], you
 Note: The length of temperatures will be in the range [1, 30000]. Each temperature will be an integer in the range [30, 100].
 
 '''
-def dailyTemperatures(temperatures):
-    """
-    :type temperatures: List[int]
-    :rtype: List[int]
-    """
+class Solution:
+	def dailyTemperatures(self, temperatures):
+		"""
+		:type temperatures: List[int]
+		:rtype: List[int]
+		"""
+		rv = [0] * len(temperatures)
+		stack = []
+		for i, t in enumerate(temperatures):
+			while stack:
+				idx, temp = stack.pop()
+				if temp >= t:
+					stack.append((idx, temp))
+					break
+				else:
+					rv[idx] = i - idx
+			stack.append((i, t))
+		return rv
