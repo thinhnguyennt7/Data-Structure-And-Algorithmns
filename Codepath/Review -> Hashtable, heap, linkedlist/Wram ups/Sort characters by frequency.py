@@ -44,19 +44,22 @@ import collections
 import heapq
 
 def frequencySort(s):
-    res=""
-    dic=collections.defaultdict(int)
-    for i in s:
-            dic[i]+=1
+	res=""
+	dic=collections.defaultdict(int)
+	for i in s:
+		dic[i]+=1
 
-    heap=[(dic[i],i) for i in dic]
-    heapq.heapify(heap)
-    while heap:
-            i,j=heapq.heappop(heap)
-            res=j*i+res
-    return res
+	heap=[ (dic[i],i) for i in dic ]
+	print("heap: ", heap)
+	heapq.heapify(heap) # Min heap
+	while heap:
+			i,j=heapq.heappop(heap)
+			res=j*i+res
+			print("res: ", res)
+	return res
 
 # Driver test
 if __name__ == "__main__":
-	input = "tree"
+	# input = "tree"
+	input = "cccaaa"
 	print("Solution: ", frequencySort(input))

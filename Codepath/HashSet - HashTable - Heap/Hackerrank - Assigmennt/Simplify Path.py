@@ -22,8 +22,8 @@ def simplifyPath(path):
 	elements = path.split('/')
 	print("element: ", elements)
 	for element in elements:
-		if element == '' or element == '.': continue
-
+		if element == '' or element == '.':
+			continue
 		if element == '..':
 			if result:
 				result.pop()
